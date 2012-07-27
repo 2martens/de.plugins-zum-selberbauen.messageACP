@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package name="de.plugins-zum-selberbauen.messageACP" xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/maelstrom/package.xsd">
+    <packageinformation>
+        <packagename><![CDATA[Message ACP]]></packagename>
+        
+        <packagedescription><![CDATA[Provides message functions for the ACP.]]></packagedescription>
+        <packagedescription language="de"><![CDATA[Stellt Message-Funktionalität im ACP zur Verfügung.]]></packagedescription>
+        <packagedescription language="de-informal"><![CDATA[Stellt Message-Funktionalität im ACP zur Verfügung.]]></packagedescription>
+        
+        <isapplication>0</isapplication>
+        <isunique>1</isunique>
+        <version>1.0.0 Alpha 1</version>
+        <date>2012-07-27</date>    
+    </packageinformation>
+    
+    <authorinformation>
+        <author><![CDATA[Jim Martens]]></author>
+        <authorurl><![CDATA[http://www.plugins-zum-selberbauen.de/]]></authorurl>
+    </authorinformation>
+    
+    <requiredpackages>
+        <requiredpackage minversion="2.0.0*">com.woltlab.wcf</requiredpackage>
+        <requiredpackage minversion="1.0.0*">com.woltlab.wcf.message</requiredpackage>
+    </requiredpackages>
+    
+    <instructions type="install">
+        <!-- files -->
+        <instruction type="acpTemplate">acptemplates.tar</instruction>
+    </instructions>
+</package>
