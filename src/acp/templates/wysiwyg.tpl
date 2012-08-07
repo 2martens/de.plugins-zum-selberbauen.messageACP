@@ -1,5 +1,5 @@
-<script type="text/javascript" src="{@$__wcf->getPath('wcf')}js/3rdParty/ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="{@$__wcf->getPath('wcf')}js/3rdParty/ckeditor/adapters/jquery.js"></script>
+<script type="text/javascript" src="{@$__wcf->getPath()}js/3rdParty/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="{@$__wcf->getPath()}js/3rdParty/ckeditor/adapters/jquery.js"></script>
 {event name='additionalIncludes'}
 
 <script type="text/javascript">
