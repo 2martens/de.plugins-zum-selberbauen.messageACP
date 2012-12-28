@@ -6,7 +6,7 @@
 	{if $smileyCategories|count}
 		<nav class="menu">
 			<ul>
-				<li><a href="#smilies-0">{lang}wcf.smilies.default{/lang}</a></li>
+				<li><a href="#smilies-0">{lang}wcf.message.smilies.default{/lang}</a></li>
 				{foreach from=$smileyCategories item=smileyCategory}
 					<li><a href="#smilies-{@$smileyCategory->smileyCategoryID}" data-smiley-category-id="{@$smileyCategory->smileyCategoryID}">{$smileyCategory->title|language}</a></li>
 				{/foreach}
@@ -24,11 +24,19 @@
 		<script type="text/javascript">
 			//<![CDATA[
 			$(function() {
-				new WCF.Message.Smilies();
+				new WCF.Message.SmileyCategories();
 			});
 			//]]>
 		</script>
 	{else}
 		{@$__defaultSmilies}
 	{/if}
+	
+	<script type="text/javascript">
+		//<![CDATA[
+		$(function() {
+			new WCF.Message.Smilies('{if $wysiwygSelector|isset}{$wysiwygSelector|encodeJS}{else}text{/if}');
+		});
+		//]]>
+	</script>
 </div>

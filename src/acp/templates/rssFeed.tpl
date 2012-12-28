@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 	<channel>
-		<title><![CDATA[{@PAGE_TITLE|language|escapeCDATA}]]></title>
-		<link><![CDATA[{@PAGE_URL|escapeCDATA}]]></link>
+		<title><![CDATA[{if $title}{$title} - {/if}{@PAGE_TITLE|language|escapeCDATA}]]></title>
+		<link><![CDATA[{@$baseHref|escapeCDATA}]]></link>
 		<description><![CDATA[{@PAGE_DESCRIPTION|escapeCDATA}]]></description>
 		<language>{@$__wcf->language->getFixedLanguageCode()}</language>
 		<pubDate>{'r'|gmdate:TIME_NOW}</pubDate>
-		<lastBuildDate>{if $items|count}{'r'|gmdate:$items->current()->getTime()}{else}{'r'|gmdate:TIME_NOW}{/if}</lastBuildDate>
+{assign var='dummy' value=$items->rewind()}
+		<lastBuildDate>{if $items->valid()}{'r'|gmdate:$items->current()->getTime()}{else}{'r'|gmdate:TIME_NOW}{/if}</lastBuildDate>
 		<ttl>60</ttl>
 		<generator><![CDATA[WoltLab® Community Framework™ {@WCF_VERSION}]]></generator>
 {*		*}{foreach from=$items item='item'}
 		<item>
 			<title><![CDATA[{@$item->getTitle()|escapeCDATA}]]></title>
-			<link><![CDATA[{@PAGE_URL|escapeCDATA}/{@$item->getLink()|escapeCDATA}]]></link>
-			<description><![CDATA[{@$item->getMessage()|escapeCDATA}]]></description>
+			<link><![CDATA[{@$item->getLink()|escapeCDATA}]]></link>
+			<description><![CDATA[{@$item->getFormattedMessage()|escapeCDATA}]]></description>
 			<pubDate>{'r'|gmdate:$item->getTime()}</pubDate>
 			<author><![CDATA[{@$item->getUsername()|escapeCDATA}]]></author>
-			<guid><![CDATA[{@PAGE_URL|escapeCDATA}/{@$item->getLink()|escapeCDATA}]]></guid>
+			<guid><![CDATA[{@$item->getLink()|escapeCDATA}]]></guid>
 		</item>
 {*		*}{/foreach}
 	</channel>

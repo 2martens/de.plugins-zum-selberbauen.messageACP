@@ -2,28 +2,30 @@
 	<ul class="formAttachmentList clearfix"{if !$attachmentHandler->getAttachmentList()|count} style="display: none"{/if}>
 		{foreach from=$attachmentHandler->getAttachmentList() item=$attachment}
 			<li class="box48">
-				<img src="{link controller='Attachment' object=$attachment}tiny=1{/link}" alt="" class="thumbnail" />
+				{if $attachment->tinyThumbnailType}
+					<img src="{link controller='Attachment' object=$attachment}tiny=1{/link}" alt="" class="thumbnail" />
+				{else}
+					<img src="{icon}attachment{/icon}" alt="" class="icon48" />
+				{/if}
 				
 				<div>
 					<hgroup>
-						<h1>{$attachment->filename}</h1>
+						<h1><a href="{link controller='Attachment' object=$attachment}{/link}"{if $attachment->isImage} title="{$attachment->filename}" class="jsImageViewer"{/if}>{$attachment->filename}</a></h1>
 						<h2><small>{@$attachment->filesize|filesize}</small></h2>
 					</hgroup>
 					
 					<ul>
-						<li><img src="{icon}delete{/icon}" alt="" title="{lang}wcf.global.button.delete{/lang}" class="jsDeleteButton jsTooltip" data-object-id="{@$attachment->attachmentID}" data-confirm-message="{lang}wcf.attachment.delete.sure{/lang}" /></li>
+						<li><img src="{icon}delete{/icon}" alt="" title="{lang}wcf.global.button.delete{/lang}" class="jsDeleteButton jsTooltip pointer" data-object-id="{@$attachment->attachmentID}" data-confirm-message="{lang}wcf.attachment.delete.sure{/lang}" /></li>
 					</ul>
 				</div>
 			</li>
 		{/foreach}
 	</ul>
 	
-	<dl>
+	<dl class="wide">
 		<dd>
 			<div></div>
-			<small>Maximum number of attachments: {#$attachmentHandler->getMaxCount()}<br />
-Maximum file size: {@$attachmentHandler->getMaxSize()|filesize}<br />
-Allowed file extensions: {', '|implode:$attachmentHandler->getAllowedExtensions()}</small>
+			<small>{lang}wcf.attachment.upload.limits{/lang}</small>
 		</dd>
 	</dl>
 </div>
@@ -32,8 +34,23 @@ Allowed file extensions: {', '|implode:$attachmentHandler->getAllowedExtensions(
 <script type="text/javascript">
 	//<![CDATA[
 	$(function() {
-		new WCF.Attachment.Upload($('#attachments > dl > dd > div'), $('#attachments > ul'), '{@$attachmentObjectType}', '{@$attachmentObjectID}', '{$tmpHash|encodeJS}', '{@$attachmentParentObjectID}');
-		new WCF.Action.Delete('wcf\\data\\attachment\\AttachmentAction', $('.formAttachmentList > li'));
+		WCF.Language.addObject({
+			'wcf.attachment.upload.error.invalidExtension': '{lang}wcf.attachment.upload.error.invalidExtension{/lang}',
+			'wcf.attachment.upload.error.tooLarge': '{lang}wcf.attachment.upload.error.tooLarge{/lang}',
+			'wcf.attachment.upload.error.uploadFailed': '{lang}wcf.attachment.upload.error.uploadFailed{/lang}',
+			'wcf.global.button.upload': '{lang}wcf.global.button.upload{/lang}'
+		});
+		WCF.Icon.addObject({
+			'wcf.icon.attachment': '{icon}attachment{/icon}'
+		});
+		
+		new WCF.Attachment.Upload($('#attachments > dl > dd > div'), $('#attachments > ul'), '{@$attachmentObjectType}', '{@$attachmentObjectID}', '{$tmpHash|encodeJS}', '{@$attachmentParentObjectID}', {@$attachmentHandler->getMaxCount()}-{@$attachmentHandler->getAttachmentList()|count});
+		new WCF.Action.Delete('wcf\\data\\attachment\\AttachmentAction', '.formAttachmentList > li');
+		
+		{* @todo: sorting *}
+		{* @todo: add to message button *}
+		{* @todo: ie9/opera fallback *}
+		{* @todo: count number of attachments / check max count *}
 	});
 	//]]>
 </script>
