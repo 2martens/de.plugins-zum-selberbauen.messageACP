@@ -2,8 +2,8 @@
 	<dl class="wide">
 		{if $__wcf->getSession()->getPermission('user.message.canUseBBCodes')}
 			<dd>
-				<label><input id="parseURL" name="parseURL" type="checkbox" value="1"{if $parseURL} checked="checked"{/if} /> {lang}wcf.message.settings.parseURL{/lang}</label>
-				<small>{lang}wcf.message.settings.parseURL.description{/lang}</small>
+				<label><input id="preParse" name="preParse" type="checkbox" value="1"{if $preParse} checked="checked"{/if} /> {lang}wcf.message.settings.preParse{/lang}</label>
+				<small>{lang}wcf.message.settings.preParse.description{/lang}</small>
 			</dd>
 		{/if}
 		{if $__wcf->getSession()->getPermission('user.message.canUseSmilies')}

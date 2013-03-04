@@ -6,9 +6,10 @@
 	{if $smileyCategories|count}
 		<nav class="menu">
 			<ul>
-				<li><a href="#smilies-0">{lang}wcf.message.smilies.default{/lang}</a></li>
+				<li><a href="{$__wcf->getAnchor('smilies-0')}">{lang}wcf.message.smilies.default{/lang}</a></li>
 				{foreach from=$smileyCategories item=smileyCategory}
-					<li><a href="#smilies-{@$smileyCategory->smileyCategoryID}" data-smiley-category-id="{@$smileyCategory->smileyCategoryID}">{$smileyCategory->title|language}</a></li>
+					{assign var='__smileyAnchor' value='smilies-'|concat:$smileyCategory->smileyCategoryID}
+					<li><a href="{$__wcf->getAnchor($__smileyAnchor)}" data-smiley-category-id="{@$smileyCategory->smileyCategoryID}">{$smileyCategory->title|language}</a></li>
 				{/foreach}
 			</ul>
 		</nav>

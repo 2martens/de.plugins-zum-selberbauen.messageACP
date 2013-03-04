@@ -5,7 +5,7 @@
 				{if $attachment->tinyThumbnailType}
 					<img src="{link controller='Attachment' object=$attachment}tiny=1{/link}" alt="" class="thumbnail" />
 				{else}
-					<img src="{icon}attachment{/icon}" alt="" class="icon48" />
+					<span class="icon icon48 icon-paper-clip"></span>
 				{/if}
 				
 				<div>
@@ -15,7 +15,7 @@
 					</hgroup>
 					
 					<ul>
-						<li><img src="{icon}delete{/icon}" alt="" title="{lang}wcf.global.button.delete{/lang}" class="jsDeleteButton jsTooltip pointer" data-object-id="{@$attachment->attachmentID}" data-confirm-message="{lang}wcf.attachment.delete.sure{/lang}" /></li>
+						<li><span class="icon icon16 icon-remove jsDeleteButton jsTooltip pointer" title="{lang}wcf.global.button.delete{/lang}" data-object-id="{@$attachment->attachmentID}" data-confirm-message="{lang}wcf.attachment.delete.sure{/lang}"></span>
 					</ul>
 				</div>
 			</li>
@@ -37,20 +37,16 @@
 		WCF.Language.addObject({
 			'wcf.attachment.upload.error.invalidExtension': '{lang}wcf.attachment.upload.error.invalidExtension{/lang}',
 			'wcf.attachment.upload.error.tooLarge': '{lang}wcf.attachment.upload.error.tooLarge{/lang}',
+			'wcf.attachment.upload.error.reachedLimit': '{lang}wcf.attachment.upload.error.reachedLimit{/lang}',
+			'wcf.attachment.upload.error.reachedRemainingLimit': '{lang}wcf.attachment.upload.error.reachedRemainingLimit{/lang}',
 			'wcf.attachment.upload.error.uploadFailed': '{lang}wcf.attachment.upload.error.uploadFailed{/lang}',
-			'wcf.global.button.upload': '{lang}wcf.global.button.upload{/lang}'
-		});
-		WCF.Icon.addObject({
-			'wcf.icon.attachment': '{icon}attachment{/icon}'
+			'wcf.global.button.upload': '{lang}wcf.global.button.upload{/lang}',
+			'wcf.attachment.insert': '{lang}wcf.attachment.insert{/lang}',
+			'wcf.attachment.delete.sure': '{lang}wcf.attachment.delete.sure{/lang}'
 		});
 		
-		new WCF.Attachment.Upload($('#attachments > dl > dd > div'), $('#attachments > ul'), '{@$attachmentObjectType}', '{@$attachmentObjectID}', '{$tmpHash|encodeJS}', '{@$attachmentParentObjectID}', {@$attachmentHandler->getMaxCount()}-{@$attachmentHandler->getAttachmentList()|count});
+		new WCF.Attachment.Upload($('#attachments > dl > dd > div'), $('#attachments > ul'), '{@$attachmentObjectType}', '{@$attachmentObjectID}', '{$tmpHash|encodeJS}', '{@$attachmentParentObjectID}', {@$attachmentHandler->getMaxCount()}, '{@$wysiwygContainerID}');
 		new WCF.Action.Delete('wcf\\data\\attachment\\AttachmentAction', '.formAttachmentList > li');
-		
-		{* @todo: sorting *}
-		{* @todo: add to message button *}
-		{* @todo: ie9/opera fallback *}
-		{* @todo: count number of attachments / check max count *}
 	});
 	//]]>
 </script>
