@@ -11,6 +11,10 @@
 <script type="text/javascript">
 //<![CDATA[
 $(function() {
+	if ($.browser.mobile) {
+		return;
+	}
+	
 	var __CKEDITOR_TOOLBAR = [
 		['Source', '-', 'Undo', 'Redo'],
 		['Bold', 'Italic', 'Underline', '-', 'Strike', 'Subscript','Superscript'],

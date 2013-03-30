@@ -1,7 +1,8 @@
 WCF.Language.addObject({
-	'wcf.message.quote.deleteSelectedQuotes': '{lang}wcf.message.quote.deleteSelectedQuotes{/lang}',
 	'wcf.message.quote.manageQuotes': '{lang}wcf.message.quote.manageQuotes{/lang}',
 	'wcf.message.quote.quoteSelected': '{lang}wcf.message.quote.quoteSelected{/lang}',
+	'wcf.message.quote.removeAllQuotes': '{lang}wcf.message.quote.removeAllQuotes{/lang}',
+	'wcf.message.quote.removeSelectedQuotes': '{lang}wcf.message.quote.removeSelectedQuotes{/lang}',
 	'wcf.message.quote.showQuotes': '{lang}wcf.message.quote.showQuotes{/lang}'
 });
 

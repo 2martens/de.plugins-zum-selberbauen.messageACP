@@ -1,6 +1,6 @@
 {if $availableContentLanguages|count}
 	<dl{if $errorField == 'languageID'} class="formError"{/if}>
-		<dt>{lang}wcf.message.language{/lang}</dt>
+		<dt>{lang}wcf.user.language{/lang}</dt>
 		<dd id="languageIDContainer">
 			<noscript>
 				<select name="languageID" id="languageID">

@@ -1,4 +1,4 @@
-<div id="smilies" class="smiliesContent tabMenuContent container containerPadding{if $smileyCategories|count} tabMenuContainer{/if}">
+<div id="smilies" class="jsOnly smiliesContent tabMenuContent container containerPadding{if $smileyCategories|count} tabMenuContainer{/if}">
 	{capture assign=__defaultSmilies}
 		{include file='__messageFormSmilies' smilies=$defaultSmilies}
 	{/capture}
