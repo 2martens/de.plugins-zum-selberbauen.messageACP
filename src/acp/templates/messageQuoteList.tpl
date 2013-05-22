@@ -1,6 +1,6 @@
 {if !$supportPaste|isset}{assign var=supportPaste value=false}{/if}
 {foreach from=$messages item=message}
-	<article class="message messageReduced marginTop" data-link="{@$message->getLink()}" data-username="{$message->getUsername()}">
+	<article class="message messageReduced marginTop jsInvalidQuoteTarget" data-link="{@$message->getLink()}" data-username="{$message->getUsername()}">
 		<div>
 			<section class="messageContent">
 				<div>
@@ -10,13 +10,13 @@
 								<a href="{link controller='User' object=$userProfiles[$message->getUserID()]}{/link}" class="framed">{@$userProfiles[$message->getUserID()]->getAvatar()->getImageTag(32)}</a>
 							{/if}
 							
-							<hgroup class="messageHeadline">
+							<div class="messageHeadline">
 								<h1><a href="{@$message->getLink()}">{$message->getTitle()}</a></h1>
-								<h2>
+								<p>
 									<span class="username">{if $userProfiles[$message->getUserID()]|isset}<a href="{link controller='User' object=$userProfiles[$message->getUserID()]}{/link}">{$message->getUsername()}</a>{else}{$message->getUsername()}{/if}</span>
 									{@$message->getTime()|time}
-								</h2>
-							</hgroup>
+								</p>
+							</div>
 						</div>
 					</header>
 					
@@ -27,15 +27,15 @@
 									{foreach from=$message key=quoteID item=quote}
 										<li data-quote-id="{@$quoteID}">
 											<span>
-												<input type="checkbox" value="1" class="jsRemoveQuote" />
+												<input type="checkbox" value="1" id="quote_{@$quoteID}" class="jsCheckbox" />
 												{if $supportPaste}<span class="icon icon16 icon-plus jsTooltip jsInsertQuote" title="{lang}wcf.message.quote.insertQuote{/lang}"></span>{/if}
 											</span>
 											
 											<div class="jsQuote">
-												{@$quote}
+												<label for="quote_{@$quoteID}">{@$quote}</label>
 											</div>
 											<div class="jsFullQuote">
-												{@$message->getFullQuote($quoteID)}
+												{$message->getFullQuote($quoteID)}
 											</div>
 										</li>
 									{/foreach}

@@ -3,16 +3,16 @@
 		{foreach from=$attachmentHandler->getAttachmentList() item=$attachment}
 			<li class="box48">
 				{if $attachment->tinyThumbnailType}
-					<img src="{link controller='Attachment' object=$attachment}tiny=1{/link}" alt="" class="thumbnail" />
+					<img src="{link controller='Attachment' object=$attachment}tiny=1{/link}" alt="" class="attachmentTinyThumbnail" />
 				{else}
 					<span class="icon icon48 icon-paper-clip"></span>
 				{/if}
 				
 				<div>
-					<hgroup>
-						<h1><a href="{link controller='Attachment' object=$attachment}{/link}"{if $attachment->isImage} title="{$attachment->filename}" class="jsImageViewer"{/if}>{$attachment->filename}</a></h1>
-						<h2><small>{@$attachment->filesize|filesize}</small></h2>
-					</hgroup>
+					<div>
+						<p><a href="{link controller='Attachment' object=$attachment}{/link}"{if $attachment->isImage} title="{$attachment->filename}" class="jsImageViewer"{/if}>{$attachment->filename}</a></p>
+						<small>{@$attachment->filesize|filesize}</small>
+					</div>
 					
 					<ul>
 						<li><span class="icon icon16 icon-remove pointer jsTooltip jsDeleteButton " title="{lang}wcf.global.button.delete{/lang}" data-object-id="{@$attachment->attachmentID}" data-confirm-message="{lang}wcf.attachment.delete.sure{/lang}"></span></li>
@@ -29,9 +29,11 @@
 			<small>{lang}wcf.attachment.upload.limits{/lang}</small>
 		</dd>
 	</dl>
+	
+	{event name='fields'}
 </div>
 
-<script type="text/javascript" src="{@$__wcf->getPath()}js/WCF.Attachment.js"></script>
+<script type="text/javascript" src="{@$__wcf->getPath()}js/WCF.Attachment{if !ENABLE_DEBUG_MODE}.min{/if}.js"></script>
 <script type="text/javascript">
 	//<![CDATA[
 	$(function() {

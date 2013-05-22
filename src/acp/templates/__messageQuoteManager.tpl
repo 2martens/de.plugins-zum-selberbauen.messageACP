@@ -1,4 +1,6 @@
 WCF.Language.addObject({
+	'wcf.message.quote.insertAllQuotes': '{lang}wcf.message.quote.insertAllQuotes{/lang}',
+	'wcf.message.quote.insertSelectedQuotes': '{lang}wcf.message.quote.insertSelectedQuotes{/lang}',
 	'wcf.message.quote.manageQuotes': '{lang}wcf.message.quote.manageQuotes{/lang}',
 	'wcf.message.quote.quoteSelected': '{lang}wcf.message.quote.quoteSelected{/lang}',
 	'wcf.message.quote.removeAllQuotes': '{lang}wcf.message.quote.removeAllQuotes{/lang}',
