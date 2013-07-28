@@ -1,29 +1,22 @@
-<script type="text/javascript">
+<script>
 //<![CDATA[
 	var CKEDITOR_BASEPATH = '{@$__wcf->getPath()}js/3rdParty/ckeditor/';
-	var __CKEDITOR_BUTTONS = [ {implode from=$__wcf->getBBCodeHandler()->getButtonBBCodes() item=__bbcode}{ icon: '{$__bbcode->wysiwygIcon}', label: '{$__bbcode->buttonLabel|language}', name: '{$__bbcode->bbcodeTag}' }{/implode} ];
+	var __CKEDITOR_BUTTONS = [ {implode from=$__wcf->getBBCodeHandler()->getButtonBBCodes() item=__bbcode}{ icon: '../../../icon/{$__bbcode->wysiwygIcon}', label: '{$__bbcode->buttonLabel|language}', name: '{$__bbcode->bbcodeTag}' }{/implode} ];
 //]]>
 </script>
-<script type="text/javascript" src="{@$__wcf->getPath()}js/3rdParty/ckeditor/ckeditor.js"></script>
-<script type="text/javascript" src="{@$__wcf->getPath()}js/3rdParty/ckeditor/adapters/jquery.js"></script>
+<script src="{@$__wcf->getPath()}js/3rdParty/ckeditor/ckeditor.js"></script>
+<script src="{@$__wcf->getPath()}js/3rdParty/ckeditor/adapters/jquery.js"></script>
 {event name='javascriptIncludes'}
 
-<script type="text/javascript">
+<script>
 //<![CDATA[
 $(function() {
 	if ($.browser.mobile) {
 		return;
 	}
 	
-	var __CKEDITOR_TOOLBAR = [
-		['Source', '-', 'Undo', 'Redo'],
-		['Bold', 'Italic', 'Underline', '-', 'Strike', 'Subscript','Superscript'],
-		['NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-		'/',
-		['Font', 'FontSize', 'TextColor'],
-		['Link', 'Unlink', 'Image', 'Table', 'Smiley'],
-		['Maximize']
-	];
+	{include file='wysiwygToolbar'}
+	
 	if (__CKEDITOR_BUTTONS.length) {
 		var $buttons = [ ];
 		
@@ -36,7 +29,7 @@ $(function() {
 	
 	var $config = {
 		smiley_path: '{@$__wcf->getPath()|encodeJS}',
-		extraPlugins: 'wbbcode,wbutton',
+		extraPlugins: 'wbbcode,wbutton,divarea',
 		removePlugins: 'contextmenu,tabletools,liststyle,elementspath,menubutton,forms,scayt',
 		language: '{@$__wcf->language->getFixedLanguageCode()}',
 		fontSize_sizes: '8/8pt;10/10pt;12/12pt;14/14pt;18/18pt;24/24pt;36/36pt;',
@@ -55,6 +48,10 @@ $(function() {
 	};
 	
 	{event name='javascriptInit'}
+	
+	if ($config.extraPlugins.indexOf('divarea') != -1) {
+		CKEDITOR.dom.element.prototype.disableContextMenu = function() { };
+	}
 	
 	var $editor = CKEDITOR.instances['{if $wysiwygSelector|isset}{$wysiwygSelector|encodeJS}{else}text{/if}'];
 	if ($editor) $editor.destroy(true);

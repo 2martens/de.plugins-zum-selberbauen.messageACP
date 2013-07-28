@@ -25,7 +25,7 @@
 	
 	<dl class="wide">
 		<dd>
-			<div></div>
+			<div data-max-size="{@$attachmentHandler->getMaxSize()}"></div>
 			<small>{lang}wcf.attachment.upload.limits{/lang}</small>
 		</dd>
 	</dl>
@@ -33,8 +33,8 @@
 	{event name='fields'}
 </div>
 
-<script type="text/javascript" src="{@$__wcf->getPath()}js/WCF.Attachment{if !ENABLE_DEBUG_MODE}.min{/if}.js"></script>
-<script type="text/javascript">
+<script src="{@$__wcf->getPath()}js/WCF.Attachment{if !ENABLE_DEBUG_MODE}.min{/if}.js?v={@$__wcfVersion}"></script>
+<script>
 	//<![CDATA[
 	$(function() {
 		WCF.Language.addObject({
