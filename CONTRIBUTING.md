@@ -1,7 +1,7 @@
 CONTRIBUTING
 ============
 
-First of all: Thanks for your interest in contributing to the Ultimate CMS! However, you have to meet some requirements in order to get your changes accepted.
+First of all: Thanks for your interest in contributing to the MessageACP! However, you have to meet some requirements in order to get your changes accepted.
 
 General requirements
 --------------------
