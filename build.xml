@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Message ACP" default="build">
+	<property name="ultimateCMSRepoRequirements" location="../de.plugins-zum-selberbauen.ultimate/de.plugins-zum-selberbauen.ultimate/requirements" />
+	<target name="clean" description="Deletes old tar files.">
+		<delete>
+			<fileset dir="metadata" includes="**/*.tar"/>
+		</delete>
+		<delete>
+			<fileset dir="build" includes="**/*.tar*" />
+		</delete>
+		<delete>
+			<fileset dir="${ultimateCMSRepoRequirements}" includes="**/*messageACP.tar*" />
+		</delete>
+	</target>
+
+	<target name="pack" depends="clean" description="Packs the tar files.">
+		<tar destfile="metadata/acptemplates.tar" 
+			basedir="src/acp/templates"
+		/>
+	</target>
+
+	<target name="build" depends="pack" description="Generates the package archive.">
+		<tar destfile="build/de.plugins-zum-selberbauen.messageACP.tar" 
+			 basedir="metadata"
+		/>
+		<gzip src="build/de.plugins-zum-selberbauen.messageACP.tar"
+			  destfile="build/de.plugins-zum-selberbauen.messageACP.tar.gz"
+		/>
+		<copy file="build/de.plugins-zum-selberbauen.messageACP.tar.gz"
+			todir="${ultimateCMSRepoRequirements}"
+		/>
+	</target>
+</project>
