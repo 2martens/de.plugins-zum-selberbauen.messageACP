@@ -27,7 +27,7 @@
 			{/if}
 		{/foreach}
 		
-		<script>
+		<script data-relocate="true">
 			//<![CDATA[
 			$(function() {
 				new WCF.Message.SmileyCategories();
