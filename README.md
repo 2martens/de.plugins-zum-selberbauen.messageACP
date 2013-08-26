@@ -7,7 +7,7 @@ Provides the com.woltlab.wcf.message functions in the ACP.
 Version notes
 -------------
 
-The currently available source code represents an early alpha version of Message ACP and should not be used in productive environments.
+The currently available source code represents a beta version of Message ACP and should not be used in productive environments.
 
 Contribution
 ------------
