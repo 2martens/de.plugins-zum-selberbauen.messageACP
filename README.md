@@ -3,11 +3,16 @@ MessageACP
 
 Provides the com.woltlab.wcf.message functions in the ACP.
 
-
 Version notes
 -------------
 
 The currently available source code represents a beta version of Message ACP and should not be used in productive environments.
+
+Branch structure (until first stable release)
+----------------
+
+* master Contains tagged release versions.
+* dev The development happens here. Whenever a release is stable and complete, it gets merged into master. Pull requests are merged into dev and start from there. That's why dev is the default branch of the repository.
 
 Contribution
 ------------
