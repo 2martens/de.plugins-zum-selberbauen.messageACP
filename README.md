@@ -6,9 +6,10 @@ Provides the com.woltlab.wcf.message functions in the ACP.
 Version notes
 -------------
 
-The currently available source code represents a release candidate version of Message ACP and should not be used in productive environments.
+The master branch always represents the latest released version of the files and is updated simultaneously with the WCF.
+The dev branch contains the latest changes of the files in the WCF, even if they are not yet represented in a WCF release.
 
-Branch structure (until first stable release)
+Branch structure
 ----------------
 
 * master Contains tagged release versions.
